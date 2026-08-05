@@ -132,55 +132,7 @@ brain-tumor-mri-classifier/
 └── static/
     ├── css/style.css
     └── js/script.js
-```
 
-## Setup & Usage
 
-1. Clone this repository.
-2. Download `model.h5` (see [Model File](#model-file) below) and place it
-   in the project root, alongside `app.py`.
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. Run the application:
-   ```bash
-   python app.py
-   ```
-5. Open `http://localhost:5000` in a browser, upload an MRI scan, and click
-   **Analyze scan** to view the predicted class and confidence scores.
 
-### Note on class label order
-
-`CLASS_LABELS` in `app.py` must match the class order used during training
-(`os.listdir(train_dir)` in the notebook). If predictions appear inverted,
-verify this order against the training data folder structure.
-
-## Model File
-
-`model.h5` (~120 MB) is not included in this repository due to GitHub's
-file size limits. Download it here and place it in the project root:
-
-**[Download model.h5](PASTE_YOUR_GOOGLE_DRIVE_LINK_HERE)**
-
-## Tech Stack
-
-`Python` · `TensorFlow / Keras` · `VGG16` · `Flask` · `HTML/CSS/JavaScript` · `scikit-learn` · `Matplotlib / Seaborn`
-
-## Limitations & Future Work
-
-- Trained for only 5 epochs due to compute constraints on Google Colab's
-  free tier — a longer training schedule with early stopping could
-  further improve accuracy.
-- Only VGG16 was evaluated; comparing against other architectures (e.g.,
-  ResNet, EfficientNet) could reveal a stronger backbone for this task.
-- The dataset size and diversity are limited; broader, multi-institution
-  MRI data would improve real-world generalization.
-
-## Disclaimer
-
-This project is intended for educational and research purposes only. It
-is **not a certified medical device** and must not be used for actual
-clinical diagnosis. Always consult a licensed radiologist or physician for
-medical decisions.
 
