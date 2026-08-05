@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cortex Scan — MRI Tumor Analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+
+  <div class="grid-overlay"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">◎</span>
+      <span class="brand-name">CORTEX<span class="brand-accent">SCAN</span></span>
+    </div>
+    <div class="topbar-meta">VGG16 · 128×128 · 4-CLASS MRI CLASSIFIER</div>
+  </header>
+
+  <main class="layout">
+
+    <section class="intro">
+      <p class="eyebrow">MRI TUMOR SCREENING</p>
+      <h1>Upload a brain MRI.<br>Get an instant read.</h1>
+      <p class="intro-copy">
+        The model looks for four patterns learned from thousands of scans —
+        glioma, meningioma, pituitary tumors, or no tumor at all —
+        and reports back a confidence score for each.
+      </p>
+      <ul class="steps">
+        <li><span class="step-num">01</span> Drop in an axial MRI slice (JPG/PNG)</li>
+        <li><span class="step-num">02</span> The scanner sweeps and analyzes it</li>
+        <li><span class="step-num">03</span> Read the classification + confidence</li>
+      </ul>
+      <p class="disclaimer">
+        ⚠ Research / educational tool only — not a medical device.
+        Always confirm with a licensed radiologist.
+      </p>
+    </section>
+
+    <section class="scan-panel">
+
+      <div id="dropzone" class="dropzone">
+        <div class="corner tl"></div>
+        <div class="corner tr"></div>
+        <div class="corner bl"></div>
+        <div class="corner br"></div>
+
+        <div id="dropzone-empty" class="dropzone-empty">
+          <div class="upload-icon">⤒</div>
+          <p class="dz-title">Drop MRI image here</p>
+          <p class="dz-sub">or click to browse — PNG / JPG, up to 10MB</p>
+        </div>
+
+        <div id="preview-wrap" class="preview-wrap hidden">
+          <img id="preview-img" alt="MRI preview" />
+          <div id="scanline" class="scanline hidden"></div>
+        </div>
+
+        <input type="file" id="file-input" accept=".png,.jpg,.jpeg,.bmp,.webp" hidden />
+      </div>
+
+      <div class="actions">
+        <button id="analyze-btn" class="btn btn-primary" disabled>Analyze scan</button>
+        <button id="reset-btn" class="btn btn-ghost hidden">New image</button>
+      </div>
+
+      <div id="status-line" class="status-line"></div>
+
+      <div id="result-card" class="result-card hidden">
+        <div class="result-head">
+          <span id="result-badge" class="result-badge"></span>
+          <span id="result-confidence" class="result-confidence"></span>
+        </div>
+        <div id="result-bars" class="result-bars"></div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span>model.h5 · Flask backend</span>
+  </footer>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
